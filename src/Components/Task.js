@@ -1,15 +1,23 @@
 import React from 'react';
-import icon from '../../public/images/x.svg';
 
-function Task() {
+function Task(props) {
+  // const loopData = () => {
+  //   props.data.map(task => <   />)
+  // }
+
   return (
     <div>
       <ul>
         <li>
-          <input type="checkbox" /> task one <img src="" />
+          <input
+            type="checkbox"
+            checked={props.checked}
+            onChange={props.onChange}
+            name="checkValue"
+          />
+          Task One
+          <img src="./images/x.svg" alt="x" />
         </li>
-        <li>task two</li>
-        <li>task three</li>
       </ul>
     </div>
   );

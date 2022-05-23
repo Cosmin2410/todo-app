@@ -1,0 +1,10 @@
+li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checked {
+  text-decoration: line-through;
+  background-color: red;
+}

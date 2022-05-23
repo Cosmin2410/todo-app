@@ -2,20 +2,40 @@ import { useState } from 'react';
 import Task from './Components/Task';
 
 function App() {
-  const [formData, setFormData] = useState({ text: '', checkValue: false });
-  const [inputValue, setInputValue] = useState(formData.text);
+  const [formData, setFormData] = useState({ text: '', check: false });
+  const [inputValue, setInputValue] = useState([]);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        [name]: type === 'checkbox' ? checked : value,
+        id: Math.floor(Math.random() * 10000),
+        [name]: value,
       };
     });
   };
 
-  const getDataBtn = () => {};
+  const getDataBtn = () => {
+    setInputValue([...inputValue, formData]);
+
+    setFormData((prevFormData) => {
+      return { ...prevFormData, text: '' };
+    });
+  };
+
+  const completeTask = (id) => {
+    let flipCheck = inputValue.map((flip) => {
+      if (inputValue.id === id) {
+        return { ...flip, check: !flip.check };
+      }
+      return flip;
+    });
+    setInputValue(flipCheck);
+
+    console.log('checked', id);
+  };
+  console.log(inputValue);
 
   return (
     <div>
@@ -27,7 +47,21 @@ function App() {
       />
       <button onClick={getDataBtn}>Add Task</button>
 
-      <Task checked={formData.checkValue} onChange={handleChange} />
+      {inputValue.map((task) => (
+        <Task
+          key={Math.floor(Math.random() * 10000)}
+          task={task}
+          checked={formData.checkValue}
+          onClick={completeTask}
+        />
+      ))}
+
+      {/* 
+      <Task
+        checked={formData.checkValue}
+        onChange={handleChange}
+        loopData={inputValue}
+      /> */}
     </div>
   );
 }

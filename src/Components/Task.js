@@ -1,25 +1,18 @@
 import React from 'react';
 
 function Task(props) {
-  // const loopData = () => {
-  //   props.data.map(task => <   />)
-  // }
-
   return (
-    <div>
-      <ul>
-        <li>
-          <input
-            type="checkbox"
-            checked={props.checked}
-            onChange={props.onChange}
-            name="checkValue"
-          />
-          Task One
-          <img src="./images/x.svg" alt="x" />
-        </li>
-      </ul>
-    </div>
+    <li>
+      <button
+        className={props.task.check ? 'checked' : ''}
+        onClick={() => props.onClick(props.task.id)}
+      >
+        Check
+      </button>
+
+      <p>{props.task.text}</p>
+      <img src="./images/x.svg" alt="x" />
+    </li>
   );
 }
 

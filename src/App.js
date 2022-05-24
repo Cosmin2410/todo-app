@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Task from './Components/Task';
+import Items from './Components/Items';
 
 function App() {
   const [formData, setFormData] = useState({ text: '', check: false });
   const [inputValue, setInputValue] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,26 +18,64 @@ function App() {
     });
   };
 
+  // Get Value From Input
+
   const getDataBtn = () => {
     setInputValue([...inputValue, formData]);
 
     setFormData((prevFormData) => {
       return { ...prevFormData, text: '' };
     });
+
+    setCounter((prevCounter) => prevCounter + 1);
   };
+
+  // Task Completed
 
   const completeTask = (id) => {
-    let flipCheck = inputValue.map((flip) => {
-      if (inputValue.id === id) {
-        return { ...flip, check: !flip.check };
+    const flipTask = inputValue.map((value) => {
+      if (value.id === id) {
+        return { ...value, check: !value.check };
       }
-      return flip;
+      return value;
     });
-    setInputValue(flipCheck);
+    setInputValue(flipTask);
 
-    console.log('checked', id);
+    // Count Tasks when Pressing Check
+
+    inputValue.map((task) => {
+      if (task.id === id && task.check === true) {
+        setCounter((prevCounter) => prevCounter + 1);
+      } else if (task.id === id && task.check !== true) {
+        setCounter((prevCounter) => prevCounter - 1);
+      }
+    });
   };
-  console.log(inputValue);
+
+  // Delete Task
+
+  const deleteTask = (id) => {
+    let deleteTasks = inputValue.filter((dltTask) => dltTask.id !== id);
+
+    setInputValue(deleteTasks);
+
+    // Substract Count Only When Checked Is Not Pressed
+    inputValue.map((task) => {
+      if (task.id === id && task.check === false) {
+        setCounter((prevCounter) => prevCounter - 1);
+      }
+    });
+  };
+
+  // Clear All Tasks Completed
+
+  const clearCompleted = () => {
+    const clearAllTasks = inputValue.filter(
+      (clearAll) => clearAll.check === false
+    );
+
+    setInputValue(clearAllTasks);
+  };
 
   return (
     <div>
@@ -53,15 +93,12 @@ function App() {
           task={task}
           checked={formData.checkValue}
           onClick={completeTask}
+          onDelete={deleteTask}
         />
       ))}
-
-      {/* 
-      <Task
-        checked={formData.checkValue}
-        onChange={handleChange}
-        loopData={inputValue}
-      /> */}
+      {/* Tasks: {counter} */}
+      <p>{counter === 1 ? `${counter} Item Left` : `${counter} Items Left`} </p>
+      <button onClick={clearCompleted}>Clear Completed</button>
     </div>
   );
 }

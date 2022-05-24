@@ -3,15 +3,22 @@ import React from 'react';
 function Task(props) {
   return (
     <li>
-      <button onClick={() => props.onClick(props.task.id)}>Check</button>
+      <img
+        src="./images/check.svg"
+        alt="check"
+        onClick={() => props.onClick(props.task.id)}
+        className="check"
+      />
 
-      <p className={props.task.check ? 'checked' : ''}>{props.task.text}</p>
+      <p className={props.task.check ? 'checked text-list' : 'text-list'}>
+        {props.task.text}
+      </p>
 
       <img
+        className="delete"
         src="./images/x.svg"
         alt="x"
         onClick={() => props.onDelete(props.task.id)}
-        // onKeyDown={e => e.key === 'Enter' && }
       />
     </li>
   );

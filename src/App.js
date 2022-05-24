@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Task from './Components/Task';
 import Items from './Components/Items';
+import Form from './Components/Form';
 
 function App() {
   const [formData, setFormData] = useState({ text: '', check: false });
-  const [inputValue, setInputValue] = useState([]);
-  const [counter, setCounter] = useState(0);
+  const [inputValue, setInputValue] = useState(
+    () => JSON.parse(localStorage.getItem('list')) || []
+  );
+  const [counter, setCounter] = useState(
+    () => JSON.parse(localStorage.getItem('count')) || 0
+  );
+
+  // Local Storage
+
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(inputValue));
+    localStorage.setItem('count', JSON.stringify(counter));
+  }, [inputValue, counter]);
+
+  // Input Value
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +45,6 @@ function App() {
   };
 
   // Task Completed
-
   const completeTask = (id) => {
     const flipTask = inputValue.map((value) => {
       if (value.id === id) {
@@ -78,27 +91,28 @@ function App() {
   };
 
   return (
-    <div>
-      <input
-        value={formData.text}
-        name="text"
-        type="text"
-        onChange={handleChange}
-      />
-      <button onClick={getDataBtn}>Add Task</button>
+    <div className="to-do-app">
+      <h1>TO BUY</h1>
 
-      {inputValue.map((task) => (
-        <Task
-          key={Math.floor(Math.random() * 10000)}
-          task={task}
-          checked={formData.checkValue}
-          onClick={completeTask}
-          onDelete={deleteTask}
-        />
-      ))}
-      {/* Tasks: {counter} */}
-      <p>{counter === 1 ? `${counter} Item Left` : `${counter} Items Left`} </p>
-      <button onClick={clearCompleted}>Clear Completed</button>
+      <Form
+        value={formData.text}
+        onChange={handleChange}
+        onClick={getDataBtn}
+      />
+
+      <ul className="list">
+        {inputValue.map((task) => (
+          <Task
+            key={Math.floor(Math.random() * 10000)}
+            task={task}
+            checked={formData.checkValue}
+            onClick={completeTask}
+            onDelete={deleteTask}
+          />
+        ))}
+      </ul>
+
+      <Items counter={counter} onClick={clearCompleted} />
     </div>
   );
 }

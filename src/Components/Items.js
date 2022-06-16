@@ -15,10 +15,4 @@ function Items(props) {
   );
 }
 
-//
-
-// {props.counter === 1
-//   ? `${props.counter} Item Left`
-//   : `${props.counter} Items Left`}
-
 export default Items;

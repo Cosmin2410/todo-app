@@ -5,6 +5,7 @@ import Form from './Components/Form';
 
 function App() {
   const [formData, setFormData] = useState({ text: '', check: false });
+
   const [inputValue, setInputValue] = useState(
     () => JSON.parse(localStorage.getItem('list')) || []
   );

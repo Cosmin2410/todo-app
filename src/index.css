@@ -14,7 +14,7 @@ body {
 }
 
 .to-do-app {
-  height: 90vh;
+  /* height: 90vh; */
   display: flex;
   flex-direction: column;
   align-items: center;

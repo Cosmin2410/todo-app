@@ -6,7 +6,7 @@ import { VscChromeClose, VscCheck } from 'react-icons/vsc';
 function Task({ onClick, task, onDelete }) {
   return (
     <TaskStyled>
-      <VscChromeClose onClick={() => onClick(task.id)} />
+      <VscCheck onClick={() => onClick(task.id)} />
 
       <TaskDone
         check={task.check ? 'line-through' : 'none'}
@@ -15,7 +15,7 @@ function Task({ onClick, task, onDelete }) {
         {task.text}
       </TaskDone>
 
-      <VscCheck onClick={() => onDelete(task.id)} />
+      <VscChromeClose onClick={() => onDelete(task.id)} />
     </TaskStyled>
   );
 }

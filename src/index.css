@@ -2,29 +2,7 @@
   text-decoration: line-through;
 } */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: hsl(235, 21%, 11%);
-  color: white;
-}
-
-.to-do-app {
-  /* height: 90vh; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 5rem;
-  width: 20rem;
-}
-
-.type {
+.to-do-app .type {
   display: flex;
   gap: 1.5rem;
   margin-top: 1rem;
@@ -54,23 +32,8 @@ body {
   background-color: hsl(220, 98%, 61%);
 }
 
-.list {
-  background-color: hsl(235, 24%, 19%);
-  margin-top: 2rem;
-  border-radius: 3px;
-}
-
-.list li {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.308);
-  width: 18rem;
-  padding: 0px 5px;
-}
-
 .delete {
-  margin-left: auto;
+  /* margin-left: auto; */
   cursor: pointer;
   width: 2.5rem;
   filter: brightness(0) saturate(100%) invert(55%) sepia(67%) saturate(5195%)

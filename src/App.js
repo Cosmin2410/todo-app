@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import Task from './Components/Task';
 import Items from './Components/Items';
 import Form from './Components/Form';
+import { GlobalStyles } from './Components/styles/Global';
+import { TodoApp } from './Components/styles/TodoApp.styled';
 
 function App() {
   const [formData, setFormData] = useState({ text: '', check: false });
@@ -92,7 +94,8 @@ function App() {
   };
 
   return (
-    <div className="to-do-app">
+    <TodoApp>
+      <GlobalStyles />
       <h1>TO BUY</h1>
 
       <Form
@@ -101,20 +104,20 @@ function App() {
         onClick={getDataBtn}
       />
 
-      <ul className="list">
-        {inputValue.map((task) => (
-          <Task
-            key={Math.floor(Math.random() * 10000)}
-            task={task}
-            checked={formData.checkValue}
-            onClick={completeTask}
-            onDelete={deleteTask}
-          />
-        ))}
-      </ul>
+      {/* <ul> */}
+      {inputValue.map((task) => (
+        <Task
+          key={Math.floor(Math.random() * 10000)}
+          task={task}
+          checked={formData.checkValue}
+          onClick={completeTask}
+          onDelete={deleteTask}
+        />
+      ))}
+      {/* </ul> */}
 
       <Items counter={counter} onClick={clearCompleted} />
-    </div>
+    </TodoApp>
   );
 }
 

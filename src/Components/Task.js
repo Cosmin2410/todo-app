@@ -1,26 +1,33 @@
 import React from 'react';
+import Delete from '../images/x.svg';
+import Check from '../images/check.svg';
+import { TaskStyled } from './styles/Task.styled';
+import { TaskDone } from './styles/Task.styled';
 
-function Task(props) {
+function Task({ onClick, task, onDelete }) {
   return (
-    <li>
+    <TaskStyled>
       <img
-        src="./images/check.svg"
+        src={Check}
         alt="check"
-        onClick={() => props.onClick(props.task.id)}
+        onClick={() => onClick(task.id)}
         className="check"
       />
 
-      <p className={props.task.check ? 'checked text-list' : 'text-list'}>
-        {props.task.text}
-      </p>
+      <TaskDone
+        check={task.check ? 'line-through' : 'none'}
+        opacity={task.check ? '.3' : '1'}
+      >
+        {task.text}
+      </TaskDone>
 
       <img
         className="delete"
-        src="./images/x.svg"
+        src={Delete}
         alt="x"
-        onClick={() => props.onDelete(props.task.id)}
+        onClick={() => onDelete(task.id)}
       />
-    </li>
+    </TaskStyled>
   );
 }
 

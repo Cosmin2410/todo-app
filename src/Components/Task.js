@@ -1,15 +1,12 @@
 import React from 'react';
-import Delete from '../images/x.svg';
-import Check from '../images/check.svg';
 import { TaskStyled } from './styles/Task.styled';
 import { TaskDone } from './styles/Task.styled';
-import { DeleteImg } from './styles/Task.styled';
-import { CheckImg } from './styles/Task.styled';
+import { VscChromeClose, VscCheck } from 'react-icons/vsc';
 
 function Task({ onClick, task, onDelete }) {
   return (
     <TaskStyled>
-      <CheckImg src={Check} alt="check" onClick={() => onClick(task.id)} />
+      <VscChromeClose onClick={() => onClick(task.id)} />
 
       <TaskDone
         check={task.check ? 'line-through' : 'none'}
@@ -18,7 +15,7 @@ function Task({ onClick, task, onDelete }) {
         {task.text}
       </TaskDone>
 
-      <DeleteImg src={Delete} alt="x" onClick={() => onDelete(task.id)} />
+      <VscCheck onClick={() => onDelete(task.id)} />
     </TaskStyled>
   );
 }

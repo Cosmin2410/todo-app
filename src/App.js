@@ -5,6 +5,7 @@ import Form from './Components/Form';
 import { GlobalStyles } from './Components/styles/Global';
 import { TodoApp } from './Components/styles/TodoApp.styled';
 import { v4 as uuidv4 } from 'uuid';
+import { ClearAll } from './Components/styles/Items.styled';
 
 function App() {
   const [formData, setFormData] = useState({ text: '', check: false });
@@ -93,6 +94,13 @@ function App() {
     setInputValue(clearAllTasks);
   };
 
+  const clearAll = () => {
+    let removeAllTasks = inputValue.filter((rmvAll) => rmvAll.text === '');
+    setInputValue(removeAllTasks);
+
+    setCounter(0);
+  };
+
   return (
     <TodoApp>
       <GlobalStyles />
@@ -113,6 +121,10 @@ function App() {
       ))}
 
       <Items counter={counter} onClick={clearCompleted} />
+
+      <ClearAll onClick={clearAll}>
+        <p>Clear All</p>
+      </ClearAll>
     </TodoApp>
   );
 }

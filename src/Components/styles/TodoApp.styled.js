@@ -6,6 +6,11 @@ export const TodoApp = styled.div`
   align-items: center;
   justify-content: center;
   margin-inline: auto;
-  margin-top: 5rem;
+  margin-top: 15rem;
   width: 20rem;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 3rem;
+  }
 `;

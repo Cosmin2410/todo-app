@@ -11,7 +11,7 @@ export const FromStyled = styled.div`
   input {
     all: unset;
     background-color: hsl(235, 24%, 19%);
-    height: 2.5rem;
+    height: 3rem;
     border-radius: 3px;
     padding: 0px 5px;
     width: 18rem;

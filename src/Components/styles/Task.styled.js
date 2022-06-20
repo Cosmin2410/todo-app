@@ -21,4 +21,7 @@ export const TaskDone = styled.p`
   font-size: 1.3rem;
   text-decoration: ${({ check }) => check};
   opacity: ${({ opacity }) => opacity};
+  width: 8rem;
+  word-wrap: break-word;
+  text-align: center;
 `;

@@ -37,6 +37,8 @@ export const ClearAll = styled.div`
   background-color: hsl(235, 24%, 19%);
   height: 3rem;
   border-top: 1px solid rgba(255, 255, 255, 0.308);
+  cursor: pointer;
+
   p {
     color: rgba(255, 255, 255, 0.623);
     font-size: 1.1rem;

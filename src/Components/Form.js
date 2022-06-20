@@ -1,10 +1,10 @@
 import React from 'react';
+import { FromStyled } from './styles/From..styled';
 
 function Form(props) {
   return (
-    <div className="type">
+    <FromStyled>
       <input
-        className="search"
         value={props.value}
         name="text"
         type="text"
@@ -16,10 +16,8 @@ function Form(props) {
         }}
       />
 
-      <button onClick={props.onClick} className="submit">
-        Add Task
-      </button>
-    </div>
+      <button onClick={props.onClick}>Add Task</button>
+    </FromStyled>
   );
 }
 

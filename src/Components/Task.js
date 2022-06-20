@@ -3,16 +3,13 @@ import Delete from '../images/x.svg';
 import Check from '../images/check.svg';
 import { TaskStyled } from './styles/Task.styled';
 import { TaskDone } from './styles/Task.styled';
+import { DeleteImg } from './styles/Task.styled';
+import { CheckImg } from './styles/Task.styled';
 
 function Task({ onClick, task, onDelete }) {
   return (
     <TaskStyled>
-      <img
-        src={Check}
-        alt="check"
-        onClick={() => onClick(task.id)}
-        className="check"
-      />
+      <CheckImg src={Check} alt="check" onClick={() => onClick(task.id)} />
 
       <TaskDone
         check={task.check ? 'line-through' : 'none'}
@@ -21,12 +18,7 @@ function Task({ onClick, task, onDelete }) {
         {task.text}
       </TaskDone>
 
-      <img
-        className="delete"
-        src={Delete}
-        alt="x"
-        onClick={() => onDelete(task.id)}
-      />
+      <DeleteImg src={Delete} alt="x" onClick={() => onDelete(task.id)} />
     </TaskStyled>
   );
 }

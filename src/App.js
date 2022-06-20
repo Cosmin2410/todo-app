@@ -4,6 +4,7 @@ import Items from './Components/Items';
 import Form from './Components/Form';
 import { GlobalStyles } from './Components/styles/Global';
 import { TodoApp } from './Components/styles/TodoApp.styled';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [formData, setFormData] = useState({ text: '', check: false });
@@ -29,7 +30,7 @@ function App() {
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        id: Math.floor(Math.random() * 10000),
+        id: uuidv4(),
         [name]: value,
       };
     });
@@ -58,7 +59,6 @@ function App() {
     setInputValue(flipTask);
 
     // Count Tasks when Pressing Check
-
     inputValue.map((task) => {
       if (task.id === id && task.check === true) {
         setCounter((prevCounter) => prevCounter + 1);
@@ -97,24 +97,20 @@ function App() {
     <TodoApp>
       <GlobalStyles />
       <h1>TO BUY</h1>
-
       <Form
         value={formData.text}
         onChange={handleChange}
         onClick={getDataBtn}
       />
-
-      {/* <ul> */}
       {inputValue.map((task) => (
         <Task
-          key={Math.floor(Math.random() * 10000)}
+          key={task.id}
           task={task}
           checked={formData.checkValue}
           onClick={completeTask}
           onDelete={deleteTask}
         />
       ))}
-      {/* </ul> */}
 
       <Items counter={counter} onClick={clearCompleted} />
     </TodoApp>

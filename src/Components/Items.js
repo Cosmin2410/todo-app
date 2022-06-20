@@ -1,17 +1,16 @@
 import React from 'react';
+import { ItemsStyled } from './styles/Items.styled';
 
-function Items(props) {
+function Items({ counter, onClick }) {
   return (
-    <div className="item-clear">
+    <ItemsStyled>
       <p>
-        <span className="items-left">{props.counter}</span>
-        {props.counter === 1 ? ` Item Left` : ` Items Left`}
+        <span>{counter}</span>
+        {counter === 1 ? ` Item Left` : ` Items Left`}
       </p>
 
-      <button className="clear-completed" onClick={props.onClick}>
-        Clear Completed
-      </button>
-    </div>
+      <button onClick={onClick}>Clear Completed</button>
+    </ItemsStyled>
   );
 }
 

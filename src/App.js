@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Task from './Components/Task';
 import Items from './Components/Items';
 import Form from './Components/Form';
@@ -100,6 +100,33 @@ function App() {
 
     setCounter(0);
   };
+
+  // const memo = useMemo(
+  //   () => (
+  //     [
+  //       {
+  //         title: {t('valid-photo-id')},
+  //         description: {t('can-be-national-id')},
+  //         inputType: {'id'},
+  //       },
+  //     ],
+  //     [
+  //       {
+  //         title: {t('proof-of-address')},
+  //         description: {t('can-be-utility-bill')},
+  //         inputType: {'address'},
+  //       },
+  //     ],
+  //     [
+  //       {
+  //         title: {t('proof-of-payment')},
+  //         description: {t('front-back-copy-of-cc')},
+  //         inputType: {'payment'},
+  //         onChange: '',
+  //       },
+  //     ]
+  //   )
+  // );
 
   return (
     <TodoApp>
